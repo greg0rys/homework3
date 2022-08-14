@@ -1,15 +1,21 @@
-// header file for words
+#include <iostream>
+#include <cstring>
+#include <cctype>
+#include <fstream>
 
+using namespace std;
 #pragma once
-#define MAX_CHARS 30
+
 
 class word {
 		public:
 				word();
 				word(const word &);
+                word(char *);
 				~word();
 				 word & operator=(const word &);
+                 void SetData(const char *);
 		private:
-				char *data;
-				int count = 0;
+				char * data;
+				int count;
 };

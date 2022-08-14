@@ -1,16 +1,14 @@
-#pragma once
+
 #include "word.h"
 #include <iostream>
 #include <cstring>
 #include <cctype>
 
-#define MAX_CHARS 30
 using namespace std;
 
 //default constructor
 word::word() {
-    data = new char[MAX_CHARS];
-    strcpy(data, "No Word Yet");
+    data = nullptr; // right sized array so this must start as nullptr.
     count = 0;
 }
 
@@ -32,7 +30,7 @@ word::word(const word &source) {
         strcpy(data,source.data);
 
     }
-    count = source.count;
+    *this = source; // this works because we have the overloaded assignment operator.
 }
 
 //overloaded assignment operator
@@ -43,12 +41,18 @@ word::word(const word &source) {
     {
         return *this;
     }
-    else
-    {
-        delete []data;
+        delete [] data;
         data = new char[strlen(source.data) + 1];
         strcpy(data, source.data);
         count = source.count;
-    }
     return *this;
+}
+
+void word::SetData(const char * datum) {
+    if(this->data) {
+        delete [] data;
+    }
+    this->data = new char[strlen(datum) + 1];
+    strcpy(this->data, datum);
+
 }
