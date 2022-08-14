@@ -8,8 +8,8 @@ class word {
 				word();
 				word(const word &);
 				~word();
-				const word & operator=(const word &);
+				 word & operator=(const word &);
 		private:
-				char *name;
+				char *data;
 				int count = 0;
 };
